@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflow Automation</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="header">
+    <div class="brand-title">Workflow Automation</div>
+    <div class="creator-badge">Created by Zayn Stark</div>
+  </div>
+
+  <!-- COUNTRY SELECTOR & MULTI-COUNTRY QUEUE CARD -->
+  <div class="section-card" style="margin-bottom: 12px; padding: 10px 14px;">
+    <div class="input-group" style="margin-bottom: 0;">
+      <div class="input-label" style="font-weight: 600; color: #fff;">🌍 Target Country & Multi-Country Queue</div>
+      <select id="countryPreset" style="width: 100%; font-weight: 600; padding: 8px; background: #0f172a; color: #6366f1; border: 1px solid #6366f1; border-radius: 6px; outline: none; cursor: pointer; margin-bottom: 8px;">
+        <option value="ph">🇵🇭 Philippines</option>
+        <option value="uk">🇬🇧 United Kingdom</option>
+        <option value="be">🇧🇪 Belgium</option>
+        <option value="se">🇸🇪 Sweden</option>
+        <option value="fi">🇫🇮 Finland</option>
+        <option value="sg">🇸🇬 Singapore</option>
+        <option value="cz">🇨🇿 Czech Republic</option>
+        <option value="ca">🇨🇦 Canada</option>
+        <option value="de">🇩🇪 Germany</option>
+        <option value="fr">🇫🇷 France</option>
+        <option value="pl">🇵🇱 Poland</option>
+        <option value="es">🇪🇸 Spain</option>
+        <option value="at">🇦🇹 Austria</option>
+        <option value="au">🇦🇺 Australia</option>
+        <option value="dk">🇩🇰 Denmark</option>
+        <option value="nl">🇳🇱 Netherlands</option>
+        <option value="mx">🇲🇽 Mexico</option>
+        <option value="ch">🇨🇭 Switzerland</option>
+        <option value="ae">🇦🇪 UAE</option>
+        <option value="no">🇳🇴 Norway</option>
+        <option value="za">🇿🇦 South Africa</option>
+        <option value="ie">🇮🇪 Ireland</option>
+      </select>
+
+      <button type="button" id="btnMultiCountryMode" class="btn btn-secondary" style="width: 100%; font-size: 11px; padding: 6px;">
+        🌐 Multi-Country Queue Mode: OFF
+      </button>
+
+      <div id="multiCountryContainer" style="display: none; margin-top: 10px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div style="font-size: 11px; font-weight: 600; margin-bottom: 6px; color: #94a3b8;">Select Queue Sequence & Loops per Country:</div>
+        <div id="queueCountryList" style="display: flex; flex-direction: column; gap: 6px; max-height: 180px; overflow-y: auto;">
+          <!-- Dynamic queue list items rendered via sidepanel.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM FILLER SECTION -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-title">Form Filler</span>
+      <span class="selector-count" id="formSelectorCount">Form selectors: 0 / 7</span>
+    </div>
+    <div class="picker-grid">
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-emailInput"></span> 1. Email</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="emailInput" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="emailInput" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="emailInput">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-next1"></span> 2. Next #1</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="next1" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="next1" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="next1">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-passwordInput"></span> 3. Password</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="passwordInput" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="passwordInput" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="passwordInput">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-textInput1"></span> 4. Text #1</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="textInput1" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="textInput1" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="textInput1">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-textInput2"></span> 5. Text #2</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="textInput2" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="textInput2" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="textInput2">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item" id="row-postalCode" style="display: none;">
+        <div class="picker-label"><span class="status-dot" id="dot-postalCode"></span> 6. Postal Code</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="postalCode" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="postalCode" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="postalCode">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-checkbox"></span> 7. Checkbox #1</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="checkbox" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="checkbox" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="checkbox">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item" id="row-checkbox2" style="display: none;">
+        <div class="picker-label"><span class="status-dot" id="dot-checkbox2"></span> 8. Checkbox #2</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="checkbox2" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="checkbox2" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="checkbox2">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-submitNext2"></span> 9. Submit #2</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="submitNext2" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="submitNext2" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="submitNext2">Pick</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHONE WORKFLOW SECTION -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-title">Phone Workflow</span>
+      <span class="selector-count" id="phoneSelectorCount">Phone selectors: 0 / 7</span>
+    </div>
+    <div class="picker-grid">
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-addMyPhone"></span> 1. Add Phone</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="addMyPhone" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="addMyPhone" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="addMyPhone">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-countryFlag"></span> 2. Country Flag</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="countryFlag" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="countryFlag" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="countryFlag">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-otherOption"></span> 3. Other Option</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="otherOption" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="otherOption" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="otherOption">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-phoneNumber"></span> 4. Phone Input</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="phoneNumber" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="phoneNumber" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="phoneNumber">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-addSend"></span> 5. Add / Send</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="addSend" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="addSend" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="addSend">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-cancelLimit"></span> 6. Cancel Limit</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="cancelLimit" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="cancelLimit" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="cancelLimit">Pick</button>
+        </div>
+      </div>
+      <div class="picker-item">
+        <div class="picker-label"><span class="status-dot" id="dot-cancelSuccess"></span> 7. Cancel Success</div>
+        <div class="picker-actions">
+          <input type="text" class="selector-input" data-step-selector="cancelSuccess" placeholder="CSS Selector">
+          <div class="delay-input-wrapper">
+            <input type="number" class="delay-input" data-step-delay="cancelSuccess" placeholder="0" min="0" value="0">
+            <span class="delay-unit">ms</span>
+          </div>
+          <button class="btn-pick" data-picker="cancelSuccess">Pick</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INPUTS & SETTINGS -->
+  <div class="section-card">
+    <div class="input-group">
+      <div class="input-label">Form Return URL</div>
+      <input type="text" id="formReturnUrl" placeholder="https://example.com/form">
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Phone Site URL (Optional for Cookie Clear)</div>
+      <input type="text" id="phoneSiteUrl" placeholder="https://example.com/phone">
+    </div>
+
+    <button type="button" id="btnUrlLock" class="btn btn-secondary" style="width: 100%; margin-bottom: 12px;">
+      🔓 URL Lock: OFF
+    </button>
+
+    <div class="input-group">
+      <div class="input-label">
+        <span>Phone Numbers (1 per line)</span>
+        <span id="phoneCounter">0 / 300</span>
+      </div>
+      <textarea id="phoneNumbers" placeholder="123456789&#10;987654321&#10;555123456"></textarea>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px;">
+        <button type="button" id="btnShuffleNumbers" class="btn btn-secondary">
+          🔀 Shuffle Now
+        </button>
+        <button type="button" id="btnAutoShuffle" class="btn btn-secondary">
+          🔀 Auto-Shuffle: OFF
+        </button>
+      </div>
+      <button type="button" id="btnClearNumbers" class="btn btn-secondary" style="width: 100%; margin-top: 6px;">
+        🗑️ Clear Phone Numbers
+      </button>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Batch Size (Numbers per Form Fill)</div>
+      <select id="batchSize" class="form-control" style="width: 100%; padding: 8px; background: var(--bg-main); color: var(--text-main); border: 1px solid var(--border-color); border-radius: 6px; font-weight: bold;">
+        <option value="5">5 Numbers per Form</option>
+        <option value="10" selected>10 Numbers per Form (Default)</option>
+        <option value="15">15 Numbers per Form</option>
+        <option value="20">20 Numbers per Form</option>
+        <option value="25">25 Numbers per Form</option>
+        <option value="30">30 Numbers per Form</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <div class="input-label">Max Workflow Loops (0 = Infinite)</div>
+      <input type="number" id="maxLoops" placeholder="0" min="0" value="0">
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="btn-group">
+    <button class="btn btn-primary" id="btnRun">▶ Run Workflow</button>
+    <button class="btn btn-danger" id="btnStop">■ Stop</button>
+    <button class="btn btn-warning" id="btnSkipCountry" style="grid-column: span 2; background-color: #f59e0b; color: #fff; font-weight: bold;">
+      ⏭️ Skip Current Country
+    </button>
+    <button class="btn btn-secondary" id="btnReset">Reset Run Data</button>
+    <button class="btn btn-secondary" id="btnExport">Export Config</button>
+    <button class="btn btn-secondary" id="btnImport" style="grid-column: span 2;">Import Config</button>
+    <button class="btn btn-danger" id="btnLockdown" style="grid-column: span 2; margin-top: 4px;">🔒 Lockdown (Purge All Site Data)</button>
+    <input type="file" id="importFile" accept=".json" style="display: none;">
+  </div>
+
+  <!-- STATUS & PROGRESS -->
+  <div class="status-card">
+    <div class="status-title">Automation Status</div>
+    <div class="status-text" id="statusText">Ready</div>
+    <div class="progress-info">
+      <span id="progressPhone">Phone 0 / 0</span>
+      <span id="progressBatch">Loop 0</span>
+    </div>
+  </div>
+
+  <!-- LIVE PERFORMANCE STATISTICS -->
+  <div class="status-card" style="margin-top: 10px;">
+    <div class="status-title">📊 Live Performance Statistics</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; font-weight: 600; font-size: 13px;">
+      <div style="color: #ef4444;">Phone Limit Errors: <span id="statLimitCount">0</span></div>
+      <div style="color: #10b981;">OTP Successful: <span id="statSuccessCount">0</span></div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px;">
+      <button type="button" id="btnGetLimitNumbers" class="btn btn-secondary" style="font-size: 11px; padding: 6px;">
+        📋 Get Limit Numbers
+      </button>
+      <button type="button" id="btnGetSuccessNumbers" class="btn btn-secondary" style="font-size: 11px; padding: 6px;">
+        📋 Get Successful Numbers
+      </button>
+    </div>
+    <button type="button" id="btnClearStats" class="btn btn-secondary" style="width: 100%; margin-top: 6px; font-size: 11px; padding: 6px;">
+      🗑️ Clear Live Statistics
+    </button>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
